@@ -6,7 +6,7 @@ const chipsNodes = Array.from(document.getElementsByClassName("chip"));
 const selectedChipClassName = "chip--selected";
 let selectedChip = "";
 
-export const initCitiesListeners = (citiesData) => {
+export const initializeCitiesListeners = (citiesData) => {
   citiesNodes.map(
     (cityNode) =>
       cityNode.addEventListener("click", () => {

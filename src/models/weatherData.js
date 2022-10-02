@@ -3,5 +3,11 @@ const baseModel = (place, time) => ({
   time,
 });
 
-export const dataType = ({ place, time, type, unit, value, ...options }) =>
-  Object.assign({}, baseModel(place, time), { type, unit, value, options });
+export const weatherDataType = ({
+  place,
+  time,
+  type,
+  unit,
+  value,
+  ...options
+}) => Object.assign({}, baseModel(place, time), { type, unit, value, options });

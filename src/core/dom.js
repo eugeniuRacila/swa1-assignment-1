@@ -11,6 +11,8 @@ const domWindSpeedMeasurements = document.getElementById("wind_speed-data");
 const domCloudCoverageMeasurements = document.getElementById(
   "cloud_coverage-data"
 );
+const domForecastDump = document.getElementById("forecast-dump");
+
 const setDOMMinTemperature = (value) => {
   const formattedValue = Math.round(value);
 
@@ -99,6 +101,16 @@ const setDOMCloudCoverageMeasurementsData = (cloudCoverageMeasurements) => {
   domCloudCoverageMeasurements.innerHTML = rawHtml;
 };
 
+const setDomForecastDump = (forecastMeasurements) => {
+  const forecastMeasurementsJSON = JSON.stringify(
+    forecastMeasurements,
+    null,
+    2
+  );
+
+  domForecastDump.innerText = forecastMeasurementsJSON;
+};
+
 export const setDomMeasurements = (cityData) => {
   console.log(cityData);
   setDOMMinTemperature(cityData.minTemperatureOfLastDay.value);
@@ -117,6 +129,7 @@ export const setDomMeasurements = (cityData) => {
   setDOMCloudCoverageMeasurementsData(
     cityData.measurements.cloud_coverage.filter((m) => isBetweenHours(m.time))
   );
+  setDomForecastDump(cityData.forecastMeasurements);
 };
 
 export const setLatestMeasurements = (measurements) => {};

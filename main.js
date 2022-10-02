@@ -1,37 +1,35 @@
 import "./style.css";
 import { fetchWeatherData } from "./src/repositories/measurementsRepository";
-import { CityData } from "./src/models/temp";
+import { CityData } from "./src/models/cityData";
 import { fetchForecastData } from "./src/repositories/forecastRepository.js";
 import { setDomMeasurements } from "./src/core/dom";
 import {
-  initCitiesListeners,
+  initializeCitiesListeners,
   initializeChipsListeners,
 } from "./src/core/listeners";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const initialSelectedCity = "Aarhus";
 
+  const weatherData = await fetchWeatherData();
+  const forecastData = await fetchForecastData();
+
   const citiesData = new Map();
-
-  const measurementsData = await fetchWeatherData();
-  const aarhusData = CityData(
-    "Aarhus",
-    measurementsData.filter((m) => m.place === "Aarhus")
-  );
-  const copenhagenData = CityData(
+  citiesData.set("Aarhus", getCityData("Aarhus", weatherData, forecastData));
+  citiesData.set(
     "Copenhagen",
-    measurementsData.filter((m) => m.place === "Copenhagen")
+    getCityData("Copenhagen", weatherData, forecastData)
   );
-  const horsensData = CityData(
-    "Horsens",
-    measurementsData.filter((m) => m.place === "Horsens")
-  );
-
-  citiesData.set("Aarhus", aarhusData);
-  citiesData.set("Copenhagen", copenhagenData);
-  citiesData.set("Horsens", horsensData);
+  citiesData.set("Horsens", getCityData("Horsens", weatherData, forecastData));
 
   setDomMeasurements(citiesData.get(initialSelectedCity));
-  initCitiesListeners(citiesData);
+  initializeCitiesListeners(citiesData);
   initializeChipsListeners("temperature");
 });
+
+const getCityData = (cityName, weather, forecast) =>
+  CityData(
+    cityName,
+    weather.filter((m) => m.place === cityName),
+    forecast.filter((m) => m.place === cityName)
+  );
