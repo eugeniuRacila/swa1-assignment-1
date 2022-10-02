@@ -5,9 +5,132 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SWA1 - Assignment 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="header">
+        <p class="f-15 header__text">Eugeniu Racila, Igor Lopatchin</p>
+        <p class="f-15 header__text">
+          <span class="f-600">SWA1</span> · Assignment 1
+        </p>
+      </header>
+      <main class="main">
+        <section id="cities" class="cities">
+          <h2
+            class="cities__city cities__city--selected f-64 f-700"
+            data-city-name="Aarhus"
+          >
+            Aarhus
+          </h2>
+          <h2 class="cities__city f-64 f-700" data-city-name="Copenhagen">
+            Copenhagen
+          </h2>
+          <h2 class="cities__city f-64 f-700" data-city-name="Horsens">
+            Horsens
+          </h2>
+        </section>
+        <section id="day-statistics" class="day-statistics">
+          <div class="day-statistic">
+            <p class="day-statistic__label f-15">Minimum <br />temperature</p>
+            <h2 class="day-statistic__value f-64 f-700" id="min-temperature">
+              20°C
+            </h2>
+          </div>
+          <div class="day-statistic">
+            <p class="day-statistic__label f-15">Maximum <br />temperature</p>
+            <h2 class="day-statistic__value f-64 f-700" id="max-temperature">
+              29°C
+            </h2>
+          </div>
+          <div class="day-statistic">
+            <p class="day-statistic__label f-15">Total <br />precipitation</p>
+            <h2
+              class="day-statistic__value f-64 f-700"
+              id="total-precipitation"
+            >
+              144.0mm
+            </h2>
+          </div>
+          <div class="day-statistic">
+            <p class="day-statistic__label f-15">Average <br />wind speed</p>
+            <h2 class="day-statistic__value f-64 f-700" id="average-wind-speed">
+              99m/s
+            </h2>
+          </div>
+        </section>
+        <section id="latest-measurements" class="latest-measurements">
+          <div class="latest-measurements__header">
+            <div>
+              <p class="latest-measurements__caption f-11">
+                Data for the last 24 hours
+              </p>
+              <h2 class="leatest-measurements__headline f-20">
+                Latest measurement of each kind
+              </h2>
+            </div>
+            <div class="chips">
+              <div
+                class="chip f-500"
+                id="temperature-chip"
+                data-name="temperature"
+              >
+                Temperature
+              </div>
+              <div
+                class="chip f-500"
+                id="precipitation-chip"
+                data-name="precipitation"
+              >
+                Precipitation
+              </div>
+              <div
+                class="chip f-500"
+                id="wind_speed-chip"
+                data-name="wind_speed"
+              >
+                Wind speed
+              </div>
+              <div
+                class="chip f-500"
+                id="cloud_coverage-chip"
+                data-name="cloud_coverage"
+              >
+                Cloud coverage
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-data">
+            <div class="measurement-data" id="temperature-data"></div>
+            <div class="measurement-data" id="precipitation-data"></div>
+            <div class="measurement-data" id="wind_speed-data"></div>
+            <div class="measurement-data" id="cloud_coverage-data"></div>
+          </div>
+        </section>
+        <section id="forecast-measurements" class="forecast-measurements">
+          <div class="forecast-measurements__header">
+            <div>
+              <p class="latest-measurements__caption f-11">
+                Data for the next 24 hours
+              </p>
+              <h2 class="leatest-measurements__headline f-20">
+                Prediction measurement <br />of each kind
+              </h2>
+            </div>
+            <div class="dumped-forecast">
+              <pre id="forecast-dump"></pre>
+            </div>
+        </section>
+      </main>
+    </div>
+    <a href="upload.html" class="upload-leaf">Upload custom data record →</a>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
