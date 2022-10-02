@@ -23,26 +23,46 @@
       </header>
       <main class="main">
         <section id="cities" class="cities">
-          <h2 class="cities__city cities__city--selected f-64 f-700">Aarhus</h2>
-          <h2 class="cities__city f-64 f-700">Copenhagen</h2>
-          <h2 class="cities__city f-64 f-700">Horsens</h2>
+          <h2
+            class="cities__city cities__city--selected f-64 f-700"
+            data-city-name="Aarhus"
+          >
+            Aarhus
+          </h2>
+          <h2 class="cities__city f-64 f-700" data-city-name="Copenhagen">
+            Copenhagen
+          </h2>
+          <h2 class="cities__city f-64 f-700" data-city-name="Horsens">
+            Horsens
+          </h2>
         </section>
         <section id="day-statistics" class="day-statistics">
           <div class="day-statistic">
             <p class="day-statistic__label f-15">Minimum <br />temperature</p>
-            <h2 class="day-statistic__value f-64 f-700">20°C</h2>
+            <h2 class="day-statistic__value f-64 f-700" id="min-temperature">
+              20°C
+            </h2>
           </div>
           <div class="day-statistic">
             <p class="day-statistic__label f-15">Maximum <br />temperature</p>
-            <h2 class="day-statistic__value f-64 f-700">29°C</h2>
+            <h2 class="day-statistic__value f-64 f-700" id="max-temperature">
+              29°C
+            </h2>
           </div>
           <div class="day-statistic">
             <p class="day-statistic__label f-15">Total <br />precipitation</p>
-            <h2 class="day-statistic__value f-64 f-700">144.0mm</h2>
+            <h2
+              class="day-statistic__value f-64 f-700"
+              id="total-precipitation"
+            >
+              144.0mm
+            </h2>
           </div>
           <div class="day-statistic">
             <p class="day-statistic__label f-15">Average <br />wind speed</p>
-            <h2 class="day-statistic__value f-64 f-700">21m/s</h2>
+            <h2 class="day-statistic__value f-64 f-700" id="average-wind-speed">
+              99m/s
+            </h2>
           </div>
         </section>
         <section id="latest-measurements" class="latest-measurements">
@@ -56,26 +76,47 @@
               </h2>
             </div>
             <div class="chips">
-              <div class="chip chip--selected f-500">Temperature</div>
-              <div class="chip f-500">Precipitation</div>
-              <div class="chip f-500">Wind speed</div>
-              <div class="chip f-500">Cloud coverage</div>
+              <div
+                class="chip f-500"
+                id="temperature-chip"
+                data-name="temperature"
+              >
+                Temperature
+              </div>
+              <div
+                class="chip f-500"
+                id="precipitation-chip"
+                data-name="precipitation"
+              >
+                Precipitation
+              </div>
+              <div
+                class="chip f-500"
+                id="wind_speed-chip"
+                data-name="wind_speed"
+              >
+                Wind speed
+              </div>
+              <div
+                class="chip f-500"
+                id="cloud_coverage-chip"
+                data-name="cloud_coverage"
+              >
+                Cloud coverage
+              </div>
             </div>
           </div>
+
           <div class="weather-data">
-            <div class="temperature-data">
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-              <p class="temperature-data__record">10:07 AM / 21°C / Aarhus</p>
-            </div>
+            <div class="measurement-data" id="temperature-data"></div>
+            <div class="measurement-data" id="precipitation-data"></div>
+            <div class="measurement-data" id="wind_speed-data"></div>
+            <div class="measurement-data" id="cloud_coverage-data"></div>
           </div>
         </section>
       </main>
     </div>
+    <a href="upload.html" class="upload-leaf">Upload custom data record →</a>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

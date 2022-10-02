@@ -1,62 +1,37 @@
 import "./style.css";
-import { setupCounter } from "./counter.js";
 import { fetchWeatherData } from "./src/repositories/measurementsRepository";
 import { CityData } from "./src/models/temp";
 import { fetchForecastData } from "./src/repositories/forecastRepository.js";
+import { setDomMeasurements } from "./src/core/dom";
+import {
+  initCitiesListeners,
+  initializeChipsListeners,
+} from "./src/core/listeners";
 
-setupCounter(document.querySelector("#counter"));
+document.addEventListener("DOMContentLoaded", async () => {
+  const initialSelectedCity = "Aarhus";
 
-const aarhusMeasurementsData = await fetchWeatherData("Aarhus");
-const aarhusData = CityData("Aarhus", aarhusMeasurementsData);
-console.log(aarhusData);
+  const citiesData = new Map();
 
-//then you cal use the for loop to do the same for every element you are getting the data from
-// let aarhusDataUnit = aarhusMeasurementsData[0];
-// let IWeather = {type: aarhusDataUnit.type, unit: aarhusDataUnit.unit, time: aarhusDataUnit.time, place: aarhusDataUnit.place};
-// let WeatherCompoundData;
-// if(IWeather.type === "wind speed")
-// {
-//     WeatherCompoundData = Object.assign({},IWeather, {value: aarhusDataUnit.value,  direction : aarhusDataUnit.direction});
-// }
-// else if (IWeather.type === "precipitation")
-// {
-//     WeatherCompoundData = Object.assign({},IWeather, {value: aarhusDataUnit.value,  precipitation_type : aarhusDataUnit.precipitation_type});
-// }
-// else{
-//     WeatherCompoundData = Object.assign({},IWeather, {value: aarhusDataUnit.value});
-// }
+  const measurementsData = await fetchWeatherData();
+  const aarhusData = CityData(
+    "Aarhus",
+    measurementsData.filter((m) => m.place === "Aarhus")
+  );
+  const copenhagenData = CityData(
+    "Copenhagen",
+    measurementsData.filter((m) => m.place === "Copenhagen")
+  );
+  const horsensData = CityData(
+    "Horsens",
+    measurementsData.filter((m) => m.place === "Horsens")
+  );
 
-// console.log("Weather data: " + JSON.stringify(WeatherCompoundData, null, 2));
+  citiesData.set("Aarhus", aarhusData);
+  citiesData.set("Copenhagen", copenhagenData);
+  citiesData.set("Horsens", horsensData);
 
-// //The same logic with the loop here
-
-// const aarhusMeasurementsForecast = await fetchForecastData("Aarhus");
-// //console.log("Aarhus forecast: " + JSON.stringify(aarhusMeasurementsForecast, null, 2));
-// let aarhusDataUnitForecast = aarhusMeasurementsForecast[1];
-// let IWeatherForecast = {type: aarhusDataUnitForecast.type, unit: aarhusDataUnitForecast.unit, time: aarhusDataUnitForecast.time, place: aarhusDataUnitForecast.place};
-// let WeatherForecastData;
-
-// if(IWeatherForecast.type === "precipitation")
-// {
-//     WeatherForecastData = Object.assign({}, IWeatherForecast, {from: aarhusDataUnitForecast.from, to: aarhusDataUnitForecast.to, precipitation_types: aarhusDataUnitForecast.precipitation_types});
-// }
-// else if (IWeatherForecast.type === "directions")
-// {
-//     WeatherForecastData = Object.assign({}, IWeatherForecast, {from: aarhusDataUnitForecast.from, to: aarhusDataUnitForecast.to, directions : aarhusDataUnitForecast.directions});
-// }
-// else{
-//     WeatherForecastData = Object.assign({}, IWeatherForecast, {from: aarhusDataUnitForecast.from, to: aarhusDataUnitForecast.to});
-// }
-
-//  console.log("Weather forecast is: " + JSON.stringify(WeatherForecastData));
-
-// const copenhagenMeasurementsData = await fetchWeatherData("Copenhagen");
-// const copenhagenData = CityData("Copenhagen", copenhagenMeasurementsData);
-//
-// const horsensMeasurementsData = await fetchWeatherData("Horsens");
-
-// const horsensData = CityData("Horsens", horsensMeasurementsData);
-//
-// console.log(aarhussData);
-// console.log(copenhagenData);
-// console.log(horsensData);
+  setDomMeasurements(citiesData.get(initialSelectedCity));
+  initCitiesListeners(citiesData);
+  initializeChipsListeners("temperature");
+});
