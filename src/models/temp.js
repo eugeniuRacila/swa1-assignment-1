@@ -5,6 +5,7 @@ import {
   getTotalPrecipitationOfLastDay,
 } from "../utils/measurements";
 import { isBetweenHours } from "../utils/time";
+import { dataType } from "./weatherData";
 
 export const CityData = (name, measurements) => {
   const cityData = {};
@@ -38,8 +39,10 @@ const sortMeasurements = (measurements) => {
     wind_speed: [],
   };
 
-  measurements.map((m) => {
-    sortedMeasurements[m.type.replaceAll(" ", "_")].push(m);
+  measurements.map((measurement) => {
+    sortedMeasurements[measurement.type.replaceAll(" ", "_")].push(
+      dataType(measurement)
+    );
   });
 
   return sortedMeasurements;
