@@ -4,9 +4,125 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload weather data</title>
+    <title>SWA1 - Assignment 1 | Upload weather data</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Upload me</h1>
+    <div id="app">
+      <header class="header">
+        <p class="f-15 header__text">Eugeniu Racila, Igor Lopatchin</p>
+        <p class="f-15 header__text">
+          <span class="f-600">SWA1</span> · Assignment 1
+        </p>
+      </header>
+      <main>
+        <section class="upload" id="upload">
+          <div class="upload__headline-container">
+            <p class="upload__caption f-11">Record a custom data record</p>
+            <h2 class="f-20">Upload a measurement data</h2>
+          </div>
+          <form class="upload-form" id="upload-data-form">
+            <div class="upload-form__container">
+              <div class="upload-form__row">
+                <div class="form-element">
+                  <label class="form-element__label f-15" for="place">
+                    Place
+                  </label>
+                  <select name="place" id="place">
+                    <option value="Aarhus" selected>Aarhus</option>
+                    <option value="Copenhagen">Copenhagen</option>
+                    <option value="Horsens">Horsens</option>
+                  </select>
+                </div>
+                <div class="form-element">
+                  <label class="form-element__label f-15" for="time"
+                    >Time</label
+                  >
+                  <input
+                    id="time"
+                    name="time"
+                    type="datetime-local"
+                    value="2022-10-12T19:30"
+                  />
+                </div>
+              </div>
+              <div class="upload-form__row">
+                <div class="form-element">
+                  <label class="form-element__label f-15" for="type">
+                    Measurement type
+                  </label>
+                  <select name="type" id="type">
+                    <option value="temperature" selected>Temperature</option>
+                    <option value="precipitation">Precipitation</option>
+                    <option value="wind speed">Wind speed</option>
+                    <option value="cloud coverage">Cloud coverage</option>
+                  </select>
+                </div>
+                <div class="form-element">
+                  <label class="form-element__label f-15" for="value">
+                    Value
+                  </label>
+                  <input id="value" name="value" type="number" />
+                </div>
+                <div class="form-element">
+                  <label class="form-element__label f-15" for="unit"
+                    >Unit</label
+                  >
+                  <input id="unit" name="unit" readonly value="C" />
+                </div>
+              </div>
+              <div class="upload-form__row">
+                <div
+                  class="form-element form-element--optional"
+                  id="form-element-precipitation"
+                >
+                  <label
+                    class="form-element__label f-15"
+                    for="precipitation_type"
+                  >
+                    Precipitation type
+                  </label>
+                  <select name="precipitation_type" id="precipitation_type">
+                    <option value="rain" selected>Rain</option>
+                    <option value="sleet">Sleet</option>
+                    <option value="hail">Hail</option>
+                    <option value="snow">Snow</option>
+                  </select>
+                </div>
+                <div
+                  class="form-element form-element--optional"
+                  id="form-element-wind"
+                >
+                  <label class="form-element__label f-15" for="direction">
+                    Wind direction
+                  </label>
+                  <select name="direction" id="direction">
+                    <option value="North" selected>North</option>
+                    <option value="Northeast">Northeast</option>
+                    <option value="East">East</option>
+                    <option value="Southeast">Southeast</option>
+                    <option value="South">South</option>
+                    <option value="Southwest">Southwest</option>
+                    <option value="West">West</option>
+                    <option value="Northwest">Northwest</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="upload-form__submit f-15 f-500" id="upload-button">
+              Upload data
+            </button>
+          </form>
+        </section>
+      </main>
+    </div>
+    <a href="index.html" class="upload-leaf">See weather records →</a>
+    <script type="module" src="/upload.js"></script>
   </body>
 </html>

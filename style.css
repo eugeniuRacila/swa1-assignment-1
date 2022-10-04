@@ -1,5 +1,6 @@
 @import "./src/styles/header.css";
 @import "./src/styles/overview-page.css";
+@import "./src/styles/upload-page.css";
 @import "./src/styles/typography.css";
 
 * {
@@ -8,7 +9,7 @@
 }
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", Avenir, Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 400;
 
@@ -33,4 +34,20 @@ body {
   max-width: 960px;
   padding: 32px;
   width: 100%;
+}
+
+.upload-leaf {
+  background-color: #f8f8f8;
+  border-radius: 32px;
+  bottom: 40px;
+  color: #000000;
+  left: 50%;
+  padding: 12px 24px;
+  position: fixed;
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.upload-leaf:hover {
+  outline: #f4f4f4 2px solid;
 }
